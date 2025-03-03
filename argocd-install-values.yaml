@@ -23,16 +23,16 @@ configs:
     ui.bannerpermanent: "true"
     # Enable local cluster access
     enable.local.cluster: "true"
-    # Configure the GitOps repository path - using the container mount path
+    # Configure the GitOps repository credentials
     repository.credentials: |
-      - url: file:///gitops/dna-gitops
+      - url: https://github.com/tsboris/gitops.git
         insecure: true
     # Configure the ApplicationSets directory
     applicationSets:
       - name: t2-applications
-        path: argocd/t2-applicationset.yaml
+        path: poc-d-gitops/argocd/t2-applicationset.yaml
       - name: t3-applications
-        path: argocd/t3-applicationset.yaml
+        path: poc-d-gitops/argocd/t3-applicationset.yaml
 
 # Disable creation of the initial admin password secret
   params:
@@ -89,4 +89,4 @@ dex:
 # Configure the ApplicationSets to be loaded from the GitOps repository
 applicationSets:
   enabled: true
-  path: argocd/*-applicationset.yaml 
+  path: poc-d-gitops/argocd/*-applicationset.yaml 
