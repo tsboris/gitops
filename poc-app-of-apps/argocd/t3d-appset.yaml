@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: t2d-app-of-apps
+  name: t3d-app-of-apps
   namespace: argocd
 spec:
   generators:
@@ -9,13 +9,13 @@ spec:
         repoURL: https://github.com/tsboris/gitops.git
         revision: HEAD
         directories:
-          - path: gitops/poc-app-of-apps/app-of-apps/t2/t2d/*
+          - path: gitops/poc-app-of-apps/app-of-apps/t3/t3d/*
   template:
     metadata:
       name: '{{path.basename}}'
       labels:
-        cluster: t2d
-        app-type: bf-app
+        cluster: t3d
+        app-type: dc-app
     spec:
       project: default
       source:
@@ -28,4 +28,4 @@ spec:
       syncPolicy:
         automated:
           prune: true
-          selfHeal: true 
+          selfHeal: true

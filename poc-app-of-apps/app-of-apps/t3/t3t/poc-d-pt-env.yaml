@@ -1,20 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: poc-d-dev-environment
+  name: poc-d-pt-environment
   namespace: argocd
   labels:
-    environment: poc-d-dev
-    cluster: t2d
-    app-type: bf-app
+    environment: poc-d-pt
+    cluster: t2t
 spec:
   project: default
   source:
     repoURL: https://github.com/tsboris/gitops.git
     targetRevision: HEAD
-    path: gitops/poc-app-of-apps/environments/poc-d-dev/applications
+    path: gitops/poc-app-of-apps/environments/poc-d-pt/applications
     directory:
-      include: "bf-app-*.yaml"
+      include: "*.yaml"
       recurse: true
   destination:
     server: https://kubernetes.default.svc
