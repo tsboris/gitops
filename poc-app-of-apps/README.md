@@ -23,7 +23,7 @@ poc-app-of-apps/
 │   ├── poc-d-dev/              # Dev environment
 │   │   ├── applications/       # Application manifests for dev
 │   │   └── values/             # Values for apps in dev
-│   ├── integ/                  # Integration environment
+│   ├── poc-d-integ/            # Integration environment
 │   ├── qa/                     # QA environment
 │   ├── uat/                    # UAT environment
 │   └── prod/                   # Production environment
@@ -31,7 +31,7 @@ poc-app-of-apps/
 ├── app-of-apps/                # Parent applications
 │   ├── t2d/                    # T2D cluster parent apps
 │   │   ├── poc-d-dev-env.yaml  # Parent app for dev environment
-│   │   └── integ-env.yaml      # Parent app for integ environment
+│   │   └── poc-d-integ-env.yaml # Parent app for integ environment
 │   ├── t2t/                    # T2T cluster parent apps
 │   │   ├── qa-env.yaml         # Parent app for qa environment
 │   │   └── uat-env.yaml        # Parent app for uat environment
@@ -81,12 +81,12 @@ For example, to promote bf-app-01 from dev to integration:
 
 ```bash
 # 1. Copy the application manifest
-cp environments/poc-d-dev/applications/bf-app-01.yaml environments/integ/applications/
+cp environments/poc-d-dev/applications/bf-app-01.yaml environments/poc-d-integ/applications/
 
-# 2. Update the image tag in environments/integ/values/bf-app-01.yaml
+# 2. Update the image tag in environments/poc-d-integ/values/bf-app-01.yaml
 
 # 3. Commit and push
-git add environments/integ/
+git add environments/poc-d-integ/
 git commit -m "Promote bf-app-01 to integration"
 git push
 ```
