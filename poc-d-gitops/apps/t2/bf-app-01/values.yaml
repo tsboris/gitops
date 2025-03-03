@@ -13,7 +13,4 @@ resources:
     cpu: 10m
     memory: 4Mi
 
-command: 
-  - sh
-  - -c
-  - "while true; do sleep 3600; done"
+command: "/bin/sh -c while true; do sleep 3600; done"
