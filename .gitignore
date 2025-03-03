@@ -1,0 +1,36 @@
+# macOS system files
+.DS_Store
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Temporary files
+*.tmp
+*.temp
+*~
+
+# Kubernetes secrets and sensitive data
+*.secret
+*.key
+*.pem
+*.crt
+
+# Local environment files
+.env
+.env.local 
+
+# Kubernetes
+*.kubeconfig
+*.config
+
+# Kind clusters
+.kube/
+
+# Logs
+*.log
+
+# Utils folder
+utils/

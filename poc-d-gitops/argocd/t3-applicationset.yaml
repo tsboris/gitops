@@ -1,0 +1,34 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: t3-applications
+  namespace: argocd
+spec:
+  generators:
+  - git:
+      repoURL: file:///Users/borist/clients/active/mizrahi/test-code/argocd/gitops/dna-gitops
+      revision: HEAD
+      directories:
+      - path: apps/t3/*
+  template:
+    metadata:
+      name: '{{path.basename}}'
+    spec:
+      project: default
+      source:
+        repoURL: file:///Users/borist/clients/active/mizrahi/test-code/argocd/gitops/dna-gitops
+        targetRevision: HEAD
+        path: '{{path}}'
+        helm:
+          valueFiles:
+          - ../../env/dna-dev/values.yaml
+      destination:
+        server: https://kubernetes.default.svc
+        name: t3d  # Updated to match the new cluster name
+        namespace: dna-dev
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true 

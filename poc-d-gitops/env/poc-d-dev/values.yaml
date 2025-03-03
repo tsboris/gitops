@@ -1,0 +1,3 @@
+# Global values for all applications in the dna-dev environment
+global:
+  namespace: dna-dev  # All applications will be deployed to this namespace
