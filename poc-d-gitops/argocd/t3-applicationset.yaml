@@ -5,30 +5,26 @@ metadata:
   namespace: argocd
 spec:
   generators:
-  - git:
-      repoURL: https://github.com/tsboris/gitops.git
-      revision: HEAD
-      directories:
-      - path: poc-d-gitops/apps/t3/*
+    - git:
+        repoURL: https://github.com/borist/test-code.git
+        targetRevision: HEAD
+        directories:
+          - path: poc-d-gitops/apps/t3/*
   template:
     metadata:
       name: '{{path.basename}}'
     spec:
       project: default
       source:
-        repoURL: https://github.com/tsboris/gitops.git
+        repoURL: https://github.com/borist/test-code.git
         targetRevision: HEAD
         path: '{{path}}'
-        helm:
-          valueFiles:
-          - ../../env/poc-d-dev/values.yaml
       destination:
         server: https://kubernetes.default.svc
-        name: t3d
         namespace: poc-d-dev
       syncPolicy:
         automated:
           prune: true
           selfHeal: true
         syncOptions:
-        - CreateNamespace=true 
+          - CreateNamespace=true 
