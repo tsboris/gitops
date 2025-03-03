@@ -37,8 +37,8 @@ poc-app-of-apps/
 │   ├── t2t/                    # T2T cluster parent apps
 │   │   ├── poc-d-qa-env.yaml   # Parent app for qa environment
 │   │   ├── poc-d-uat-env.yaml  # Parent app for uat environment
-│   │   ├── poc-d-pt-env.yaml   # Parent app for performance test environment
-│   │   └── poc-d-stress-env.yaml # Parent app for stress test environment
+│   │   ├── poc-d-pt-env.yaml   # Parent app for pt environment
+│   │   └── poc-d-stress-env.yaml # Parent app for stress environment
 │   └── t2p/                    # T2P cluster parent app
 │       └── poc-d-prod-env.yaml # Parent app for prod environment
 │
