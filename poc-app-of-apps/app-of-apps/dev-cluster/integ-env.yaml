@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: integ-environment
+  namespace: argocd
+  labels:
+    environment: integ
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/tsboris/gitops.git
+    targetRevision: HEAD
+    path: gitops/poc-app-of-apps/environments/integ/applications
+    directory:
+      include: "*.yaml"
+      recurse: true
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true 

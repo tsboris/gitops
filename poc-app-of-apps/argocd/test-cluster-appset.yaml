@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: test-cluster-app-of-apps
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/tsboris/gitops.git
+        revision: HEAD
+        directories:
+          - path: gitops/poc-app-of-apps/app-of-apps/test-cluster/*
+  template:
+    metadata:
+      name: '{{path.basename}}'
+      labels:
+        cluster: test
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/tsboris/gitops.git
+        targetRevision: HEAD
+        path: '{{path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: argocd
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true 

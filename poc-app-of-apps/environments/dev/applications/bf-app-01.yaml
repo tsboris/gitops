@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: bf-app-01-dev
+  namespace: argocd
+  labels:
+    app: bf-app-01
+    team: team-a
+    component: backend
+    environment: dev
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/tsboris/gitops.git
+    targetRevision: HEAD
+    path: gitops/poc-app-of-apps/apps/bf-app-01
+    helm:
+      valueFiles:
+        - ../../environments/dev/values/bf-app-01.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: poc-d-dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true 

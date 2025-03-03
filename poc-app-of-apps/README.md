@@ -1,0 +1,94 @@
+# App-of-Apps GitOps Pattern
+
+This repository contains a GitOps configuration for deploying applications across multiple Kubernetes clusters using the ArgoCD "App-of-Apps" pattern.
+
+## Architecture Overview
+
+- **3 Kubernetes Clusters**: dev, test, and prod
+- **5 Namespaces** across clusters:
+  - **dev cluster**: poc-d-dev, poc-d-integ
+  - **test cluster**: poc-d-qa, poc-d-uat
+  - **prod cluster**: poc-d-prod
+- **Each cluster** has its own ArgoCD instance
+
+## Repository Structure
+
+```
+poc-app-of-apps/
+├── apps/                       # Application Helm charts
+│   ├── bf-app-01/              # Helm chart for bf-app-01
+│   └── bf-app-02/              # Helm chart for bf-app-02
+│
+├── environments/               # Environment-specific configurations
+│   ├── dev/                    # Dev environment
+│   │   ├── applications/       # Application manifests for dev
+│   │   └── values/             # Values for apps in dev
+│   ├── integ/                  # Integration environment
+│   ├── qa/                     # QA environment
+│   ├── uat/                    # UAT environment
+│   └── prod/                   # Production environment
+│
+├── app-of-apps/                # Parent applications
+│   ├── dev-cluster/            # Dev cluster parent apps
+│   │   ├── dev-env.yaml        # Parent app for dev environment
+│   │   └── integ-env.yaml      # Parent app for integ environment
+│   ├── test-cluster/           # Test cluster parent apps
+│   │   ├── qa-env.yaml         # Parent app for qa environment
+│   │   └── uat-env.yaml        # Parent app for uat environment
+│   └── prod-cluster/           # Production cluster parent app
+│       └── prod-env.yaml       # Parent app for prod environment
+│
+└── argocd/                     # ArgoCD ApplicationSet configurations
+    ├── dev-cluster-appset.yaml
+    ├── test-cluster-appset.yaml
+    └── prod-cluster-appset.yaml
+```
+
+## App-of-Apps Pattern
+
+This repository uses the "App-of-Apps" pattern, where:
+
+1. Each ArgoCD instance gets a single ApplicationSet that points to parent applications
+2. Each parent application manages all applications for a specific environment
+3. The actual application manifests are defined in each environment's applications directory
+
+## Benefits of This Approach
+
+- **Clear Environment Boundaries**: Each environment has its own parent application
+- **Enhanced Filtering**: Applications have consistent labels (team, component, environment)
+- **Simplified Promotion**: Copy application manifests between environment directories to promote
+- **Environment-Level Control**: Pause/resume all applications in an environment at once
+
+## Deployment Workflow
+
+Applications progress through environments in the following order:
+
+1. **poc-d-dev** (dev cluster) - Initial development
+2. **poc-d-integ** (dev cluster) - Integration testing
+3. **poc-d-qa** (test cluster) - Quality assurance
+4. **poc-d-uat** (test cluster) - User acceptance testing
+5. **poc-d-prod** (prod cluster) - Production deployment
+
+## Managing Application Versions
+
+To promote an application to the next environment:
+
+1. Copy the application manifest from the current environment to the target environment
+2. Update the image tag in the values file for the target environment
+3. Commit and push the changes
+
+For example, to promote bf-app-01 from dev to integration:
+
+```bash
+# 1. Copy the application manifest
+cp environments/dev/applications/bf-app-01.yaml environments/integ/applications/
+
+# 2. Update the image tag in environments/integ/values/bf-app-01.yaml
+
+# 3. Commit and push
+git add environments/integ/
+git commit -m "Promote bf-app-01 to integration"
+git push
+```
+
+ArgoCD will automatically detect the new application in the integration environment and deploy it. 
