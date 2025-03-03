@@ -27,12 +27,6 @@ configs:
     repository.credentials: |
       - url: https://github.com/tsboris/gitops.git
         insecure: true
-    # Configure the ApplicationSets directory
-    applicationSets:
-      - name: t2-applications
-        path: poc-d-gitops/argocd/t2-applicationset.yaml
-      - name: t3-applications
-        path: poc-d-gitops/argocd/t3-applicationset.yaml
 
 # Disable creation of the initial admin password secret
   params:
