@@ -6,26 +6,26 @@ metadata:
 spec:
   generators:
   - git:
-      repoURL: file:///Users/borist/clients/active/mizrahi/test-code/argocd/gitops/dna-gitops
+      repoURL: https://github.com/tsboris/gitops.git
       revision: HEAD
       directories:
-      - path: apps/t3/*
+      - path: poc-d-gitops/apps/t3/*
   template:
     metadata:
       name: '{{path.basename}}'
     spec:
       project: default
       source:
-        repoURL: file:///Users/borist/clients/active/mizrahi/test-code/argocd/gitops/dna-gitops
+        repoURL: https://github.com/tsboris/gitops.git
         targetRevision: HEAD
         path: '{{path}}'
         helm:
           valueFiles:
-          - ../../env/dna-dev/values.yaml
+          - ../../env/poc-d-dev/values.yaml
       destination:
         server: https://kubernetes.default.svc
-        name: t3d  # Updated to match the new cluster name
-        namespace: dna-dev
+        name: t3d
+        namespace: poc-d-dev
       syncPolicy:
         automated:
           prune: true
