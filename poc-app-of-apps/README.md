@@ -4,10 +4,10 @@ This repository contains a GitOps configuration for deploying applications acros
 
 ## Architecture Overview
 
-- **3 Kubernetes Clusters**: t2d, test, and prod
+- **3 Kubernetes Clusters**: t2d, t2t, and prod
 - **5 Namespaces** across clusters:
   - **t2d cluster**: poc-d-dev, poc-d-integ
-  - **test cluster**: poc-d-qa, poc-d-uat
+  - **t2t cluster**: poc-d-qa, poc-d-uat
   - **prod cluster**: poc-d-prod
 - **Each cluster** has its own ArgoCD instance
 
@@ -32,7 +32,7 @@ poc-app-of-apps/
 │   ├── t2d/                    # T2D cluster parent apps
 │   │   ├── dev-env.yaml        # Parent app for dev environment
 │   │   └── integ-env.yaml      # Parent app for integ environment
-│   ├── test-cluster/           # Test cluster parent apps
+│   ├── t2t/                    # T2T cluster parent apps
 │   │   ├── qa-env.yaml         # Parent app for qa environment
 │   │   └── uat-env.yaml        # Parent app for uat environment
 │   └── prod-cluster/           # Production cluster parent app
@@ -40,7 +40,7 @@ poc-app-of-apps/
 │
 └── argocd/                     # ArgoCD ApplicationSet configurations
     ├── t2d-appset.yaml
-    ├── test-cluster-appset.yaml
+    ├── t2t-appset.yaml
     └── prod-cluster-appset.yaml
 ```
 
@@ -65,8 +65,8 @@ Applications progress through environments in the following order:
 
 1. **poc-d-dev** (t2d cluster) - Initial development
 2. **poc-d-integ** (t2d cluster) - Integration testing
-3. **poc-d-qa** (test cluster) - Quality assurance
-4. **poc-d-uat** (test cluster) - User acceptance testing
+3. **poc-d-qa** (t2t cluster) - Quality assurance
+4. **poc-d-uat** (t2t cluster) - User acceptance testing
 5. **poc-d-prod** (prod cluster) - Production deployment
 
 ## Managing Application Versions

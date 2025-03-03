@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: test-cluster-app-of-apps
+  name: t2t-app-of-apps
   namespace: argocd
 spec:
   generators:
@@ -9,12 +9,12 @@ spec:
         repoURL: https://github.com/tsboris/gitops.git
         revision: HEAD
         directories:
-          - path: gitops/poc-app-of-apps/app-of-apps/test-cluster/*
+          - path: gitops/poc-app-of-apps/app-of-apps/t2t/*
   template:
     metadata:
       name: '{{path.basename}}'
       labels:
-        cluster: test
+        cluster: t2t
     spec:
       project: default
       source:
