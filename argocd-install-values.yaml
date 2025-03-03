@@ -80,7 +80,6 @@ redis:
 dex:
   enabled: false
 
-# Configure the ApplicationSets to be loaded from the GitOps repository
+# Disable automatic ApplicationSets discovery
 applicationSets:
-  enabled: true
-  path: poc-d-gitops/argocd/*-applicationset.yaml 
+  enabled: false 
