@@ -1,0 +1,12 @@
+# Values for the Performance Testing environment
+global:
+  namespace: poc-d-pt
+
+# Application-specific overrides
+bf-app-01:
+  image:
+    tag: "pt-latest"  # This will be the tag for the Performance Testing version
+    
+bf-app-02:
+  image:
+    tag: "pt-latest"  # This will be the tag for the Performance Testing version 

@@ -5,9 +5,9 @@ This repository contains a GitOps configuration for deploying applications acros
 ## Architecture Overview
 
 - **3 Kubernetes Clusters**: t2d, t2t, and t2p
-- **5 Namespaces** across clusters:
+- **7 Namespaces** across clusters:
   - **t2d cluster**: poc-d-dev, poc-d-integ
-  - **t2t cluster**: poc-d-qa, poc-d-uat
+  - **t2t cluster**: poc-d-qa, poc-d-uat, poc-d-pt, poc-d-stress
   - **t2p cluster**: poc-d-prod
 - **Each cluster** has its own ArgoCD instance
 
@@ -26,6 +26,8 @@ poc-app-of-apps/
 │   ├── poc-d-integ/            # Integration environment
 │   ├── poc-d-qa/               # QA environment
 │   ├── poc-d-uat/              # UAT environment
+│   ├── poc-d-pt/               # Performance Testing environment
+│   ├── poc-d-stress/           # Stress Testing environment
 │   └── poc-d-prod/             # Production environment
 │
 ├── app-of-apps/                # Parent applications
@@ -34,7 +36,9 @@ poc-app-of-apps/
 │   │   └── poc-d-integ-env.yaml # Parent app for integ environment
 │   ├── t2t/                    # T2T cluster parent apps
 │   │   ├── poc-d-qa-env.yaml   # Parent app for qa environment
-│   │   └── poc-d-uat-env.yaml  # Parent app for uat environment
+│   │   ├── poc-d-uat-env.yaml  # Parent app for uat environment
+│   │   ├── poc-d-pt-env.yaml   # Parent app for performance test environment
+│   │   └── poc-d-stress-env.yaml # Parent app for stress test environment
 │   └── t2p/                    # T2P cluster parent app
 │       └── poc-d-prod-env.yaml # Parent app for prod environment
 │
@@ -67,7 +71,9 @@ Applications progress through environments in the following order:
 2. **poc-d-integ** (t2d cluster) - Integration testing
 3. **poc-d-qa** (t2t cluster) - Quality assurance
 4. **poc-d-uat** (t2t cluster) - User acceptance testing
-5. **poc-d-prod** (t2p cluster) - Production deployment
+5. **poc-d-pt** (t2t cluster) - Performance testing
+6. **poc-d-stress** (t2t cluster) - Stress testing
+7. **poc-d-prod** (t2p cluster) - Production deployment
 
 ## Managing Application Versions
 
