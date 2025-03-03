@@ -4,11 +4,11 @@ This repository contains a GitOps configuration for deploying applications acros
 
 ## Architecture Overview
 
-- **3 Kubernetes Clusters**: t2d, t2t, and prod
+- **3 Kubernetes Clusters**: t2d, t2t, and t2p
 - **5 Namespaces** across clusters:
   - **t2d cluster**: poc-d-dev, poc-d-integ
   - **t2t cluster**: poc-d-qa, poc-d-uat
-  - **prod cluster**: poc-d-prod
+  - **t2p cluster**: poc-d-prod
 - **Each cluster** has its own ArgoCD instance
 
 ## Repository Structure
@@ -35,13 +35,13 @@ poc-app-of-apps/
 │   ├── t2t/                    # T2T cluster parent apps
 │   │   ├── qa-env.yaml         # Parent app for qa environment
 │   │   └── uat-env.yaml        # Parent app for uat environment
-│   └── prod-cluster/           # Production cluster parent app
+│   └── t2p/                    # T2P cluster parent app
 │       └── prod-env.yaml       # Parent app for prod environment
 │
 └── argocd/                     # ArgoCD ApplicationSet configurations
     ├── t2d-appset.yaml
     ├── t2t-appset.yaml
-    └── prod-cluster-appset.yaml
+    └── t2p-appset.yaml
 ```
 
 ## App-of-Apps Pattern
@@ -67,7 +67,7 @@ Applications progress through environments in the following order:
 2. **poc-d-integ** (t2d cluster) - Integration testing
 3. **poc-d-qa** (t2t cluster) - Quality assurance
 4. **poc-d-uat** (t2t cluster) - User acceptance testing
-5. **poc-d-prod** (prod cluster) - Production deployment
+5. **poc-d-prod** (t2p cluster) - Production deployment
 
 ## Managing Application Versions
 

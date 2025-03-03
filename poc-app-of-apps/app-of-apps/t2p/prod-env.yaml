@@ -5,6 +5,7 @@ metadata:
   namespace: argocd
   labels:
     environment: prod
+    cluster: t2p
 spec:
   project: default
   source:
