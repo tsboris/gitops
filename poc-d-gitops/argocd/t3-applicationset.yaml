@@ -6,8 +6,8 @@ metadata:
 spec:
   generators:
     - git:
-        repoURL: https://github.com/borist/test-code.git
-        targetRevision: HEAD
+        repoURL: https://github.com/tsboris/gitops.git
+        revision: HEAD
         directories:
           - path: poc-d-gitops/apps/t3/*
   template:
@@ -16,7 +16,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://github.com/borist/test-code.git
+        repoURL: https://github.com/tsboris/gitops.git
         targetRevision: HEAD
         path: '{{path}}'
       destination:
