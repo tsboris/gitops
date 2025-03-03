@@ -1,16 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: dev-environment
+  name: integ-environment
   namespace: argocd
   labels:
-    environment: dev
+    environment: integ
+    cluster: t2d
 spec:
   project: default
   source:
     repoURL: https://github.com/tsboris/gitops.git
     targetRevision: HEAD
-    path: gitops/poc-app-of-apps/environments/dev/applications
+    path: gitops/poc-app-of-apps/environments/integ/applications
     directory:
       include: "*.yaml"
       recurse: true

@@ -8,6 +8,7 @@ metadata:
     team: team-b
     component: frontend
     environment: dev
+    cluster: t2d
 spec:
   project: default
   source:

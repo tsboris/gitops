@@ -8,6 +8,7 @@ metadata:
     team: team-a
     component: backend
     environment: integ
+    cluster: t2d
 spec:
   project: default
   source:
