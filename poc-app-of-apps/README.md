@@ -20,7 +20,7 @@ poc-app-of-apps/
 │   └── bf-app-02/              # Helm chart for bf-app-02
 │
 ├── environments/               # Environment-specific configurations
-│   ├── dev/                    # Dev environment
+│   ├── poc-d-dev/              # Dev environment
 │   │   ├── applications/       # Application manifests for dev
 │   │   └── values/             # Values for apps in dev
 │   ├── integ/                  # Integration environment
@@ -30,7 +30,7 @@ poc-app-of-apps/
 │
 ├── app-of-apps/                # Parent applications
 │   ├── t2d/                    # T2D cluster parent apps
-│   │   ├── dev-env.yaml        # Parent app for dev environment
+│   │   ├── poc-d-dev-env.yaml  # Parent app for dev environment
 │   │   └── integ-env.yaml      # Parent app for integ environment
 │   ├── t2t/                    # T2T cluster parent apps
 │   │   ├── qa-env.yaml         # Parent app for qa environment
@@ -81,7 +81,7 @@ For example, to promote bf-app-01 from dev to integration:
 
 ```bash
 # 1. Copy the application manifest
-cp environments/dev/applications/bf-app-01.yaml environments/integ/applications/
+cp environments/poc-d-dev/applications/bf-app-01.yaml environments/integ/applications/
 
 # 2. Update the image tag in environments/integ/values/bf-app-01.yaml
 
