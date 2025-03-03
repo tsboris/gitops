@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: uat-environment
+  name: poc-d-uat-environment
   namespace: argocd
   labels:
-    environment: uat
+    environment: poc-d-uat
     cluster: t2t
 spec:
   project: default
   source:
     repoURL: https://github.com/tsboris/gitops.git
     targetRevision: HEAD
-    path: gitops/poc-app-of-apps/environments/uat/applications
+    path: gitops/poc-app-of-apps/environments/poc-d-uat/applications
     directory:
       include: "*.yaml"
       recurse: true

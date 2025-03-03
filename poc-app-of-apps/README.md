@@ -25,7 +25,7 @@ poc-app-of-apps/
 │   │   └── values/             # Values for apps in dev
 │   ├── poc-d-integ/            # Integration environment
 │   ├── poc-d-qa/               # QA environment
-│   ├── uat/                    # UAT environment
+│   ├── poc-d-uat/              # UAT environment
 │   └── poc-d-prod/             # Production environment
 │
 ├── app-of-apps/                # Parent applications
@@ -34,7 +34,7 @@ poc-app-of-apps/
 │   │   └── poc-d-integ-env.yaml # Parent app for integ environment
 │   ├── t2t/                    # T2T cluster parent apps
 │   │   ├── poc-d-qa-env.yaml   # Parent app for qa environment
-│   │   └── uat-env.yaml        # Parent app for uat environment
+│   │   └── poc-d-uat-env.yaml  # Parent app for uat environment
 │   └── t2p/                    # T2P cluster parent app
 │       └── poc-d-prod-env.yaml # Parent app for prod environment
 │
