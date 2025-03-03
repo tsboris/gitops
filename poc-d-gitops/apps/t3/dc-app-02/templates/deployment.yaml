@@ -18,7 +18,8 @@ spec:
         - name: alpine
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          command: {{ .Values.command }}
+          command:
+{{ toYaml .Values.command | indent 12 }}
           resources:
             limits:
               cpu: {{ .Values.resources.limits.cpu }}
