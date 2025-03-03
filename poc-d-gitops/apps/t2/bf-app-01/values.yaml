@@ -1,8 +1,11 @@
+# Default values for bf-app-01
+# These values will be overridden by environment-specific values files
+
 replicaCount: 1
 
 image:
   repository: alpine
-  tag: "3.19"
+  tag: "3.19"  # This will be overridden by environment-specific tag
   pullPolicy: IfNotPresent
 
 resources:

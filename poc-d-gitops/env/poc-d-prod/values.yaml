@@ -1,0 +1,12 @@
+# Values for the production environment
+global:
+  namespace: poc-d-prod
+
+# Application-specific overrides
+bf-app-01:
+  image:
+    tag: "1.0.0"  # This will be a stable versioned tag for production
+    
+bf-app-02:
+  image:
+    tag: "1.0.0"  # This will be a stable versioned tag for production

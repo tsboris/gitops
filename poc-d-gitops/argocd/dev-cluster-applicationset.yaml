@@ -1,0 +1,39 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: dev-cluster-applications
+  namespace: argocd
+spec:
+  generators:
+    - matrix:
+        generators:
+          - list:
+              elements:
+                - namespace: poc-d-dev
+                - namespace: poc-d-integ
+          - git:
+              repoURL: https://github.com/tsboris/gitops.git
+              revision: HEAD
+              directories:
+                - path: poc-d-gitops/apps/t2/*
+  template:
+    metadata:
+      name: '{{path.basename}}-{{namespace}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/tsboris/gitops.git
+        targetRevision: HEAD
+        path: '{{path}}'
+        helm:
+          valueFiles:
+            - ../../env/{{namespace}}/values.yaml
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{namespace}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true 
