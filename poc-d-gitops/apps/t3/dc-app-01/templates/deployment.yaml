@@ -15,7 +15,7 @@ spec:
         app: {{ .Release.Name }}
     spec:
       containers:
-        - name: busybox
+        - name: alpine
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command: {{ .Values.command }}

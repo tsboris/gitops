@@ -1,4 +1,9 @@
 # ArgoCD Helm chart values
+global:
+  image:
+    repository: alpine
+    tag: 3.19
+
 server:
   extraArgs:
     - --insecure
