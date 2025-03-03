@@ -1,17 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: prod-environment
+  name: poc-d-prod-environment
   namespace: argocd
   labels:
-    environment: prod
+    environment: poc-d-prod
     cluster: t2p
 spec:
   project: default
   source:
     repoURL: https://github.com/tsboris/gitops.git
     targetRevision: HEAD
-    path: gitops/poc-app-of-apps/environments/prod/applications
+    path: gitops/poc-app-of-apps/environments/poc-d-prod/applications
     directory:
       include: "*.yaml"
       recurse: true

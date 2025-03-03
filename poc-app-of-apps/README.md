@@ -26,7 +26,7 @@ poc-app-of-apps/
 │   ├── poc-d-integ/            # Integration environment
 │   ├── qa/                     # QA environment
 │   ├── uat/                    # UAT environment
-│   └── prod/                   # Production environment
+│   └── poc-d-prod/             # Production environment
 │
 ├── app-of-apps/                # Parent applications
 │   ├── t2d/                    # T2D cluster parent apps
@@ -36,7 +36,7 @@ poc-app-of-apps/
 │   │   ├── qa-env.yaml         # Parent app for qa environment
 │   │   └── uat-env.yaml        # Parent app for uat environment
 │   └── t2p/                    # T2P cluster parent app
-│       └── prod-env.yaml       # Parent app for prod environment
+│       └── poc-d-prod-env.yaml # Parent app for prod environment
 │
 └── argocd/                     # ArgoCD ApplicationSet configurations
     ├── t2d-appset.yaml
