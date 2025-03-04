@@ -5,7 +5,7 @@ metadata:
   namespace: argocd
   labels:
     environment: poc-d-uat
-    cluster: t2t
+    cluster: t3t
 spec:
   project: default
   source:
@@ -13,7 +13,7 @@ spec:
     targetRevision: HEAD
     path: gitops/poc-app-of-apps/environments/poc-d-uat/applications
     directory:
-      include: "*.yaml"
+      include: "dc-app-*.yaml"
       recurse: true
   destination:
     server: https://kubernetes.default.svc
