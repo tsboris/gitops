@@ -1,12 +1,16 @@
-# Global values for all applications in the dna-dev environment
-global:
-  namespace: poc-d-dev  # All applications will be deployed to this namespace
+namespace: poc-d-uat
+repoURL: https://github.com/tsboris/gitops.git
 
-# Application-specific overrides
-bf-app-01:
-  image:
-    tag: "dev-latest"  # This will be the tag for the development version
-    
-bf-app-02:
-  image:
-    tag: "dev-latest"  # This will be the tag for the development version
+applications:
+
+  - name: bf-app-01
+    targetRevision: HEAD
+    path: gitops/poc-d-gitops/apps/t2/bf-app-01
+    labels:
+      version: 1.0.0
+
+  - name: bf-app-02
+    targetRevision: HEAD
+    path: gitops/poc-d-gitops/apps/t2/bf-app-02
+    labels:
+      version: 2.0.0
