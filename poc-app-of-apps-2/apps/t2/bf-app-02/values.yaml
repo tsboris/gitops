@@ -1,0 +1,23 @@
+replicaCount: 1
+
+image:
+  repository: alpine
+  tag: "3.19"
+  pullPolicy: IfNotPresent
+
+resources:
+  limits:
+    cpu: 50m
+    memory: 8Mi
+  requests:
+    cpu: 10m
+    memory: 4Mi
+
+command:
+  - /bin/sh
+  - -c
+  - while true; do sleep 3600; done
+
+service:
+  type: ClusterIP
+  port: 80

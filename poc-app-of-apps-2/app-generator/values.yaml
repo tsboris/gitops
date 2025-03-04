@@ -1,0 +1,43 @@
+# Default values for the application generator chart
+# This is a YAML-formatted file.
+
+# Path to the configuration file with the application list
+configFile: ""
+
+# Default values for all applications
+applicationDefaults:
+  namespace: argocd
+  project: default
+  server: https://kubernetes.default.svc
+  targetNamespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+
+# Direct application definitions
+applications: []
+# - name: example-app
+#   namespace: example-namespace
+#   repoURL: https://github.com/tsboris/gitops.git
+#   targetRevision: HEAD
+#   path: example/path
+#   isHelm: true  # Set to false for kustomize or raw manifests
+#   recurseDir: false  # Set to true to recursively search for manifests
+#   syncWave: 10  # Control the order of application deployment
+#   labels:
+#     version: 1.0.0
+#   helm:
+#     parameters:
+#     - name: "image.repository"
+#       value: "nginx"
+#     valueFiles:
+#     - values-override.yaml
+#   syncPolicy:
+#     automated:
+#       prune: true
+#       selfHeal: true
+#     syncOptions:
+#     - CreateNamespace=true 

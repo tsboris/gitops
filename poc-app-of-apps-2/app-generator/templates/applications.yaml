@@ -1,0 +1,72 @@
+{{- $applications := include "app-generator.loadApplications" . | fromYaml -}}
+{{- $default := .Values.applicationDefaults -}}
+
+{{ range $app := $applications }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ $app.name }}
+  {{- with $app.namespace }}
+  namespace: {{ . }}
+  {{- else }}
+  namespace: {{ $default.namespace | default "argocd" }}
+  {{- end }}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  labels:
+    {{- include "app-generator.labels" $ | nindent 4 }}
+    app.kubernetes.io/name: {{ $app.name }}
+    {{- with $app.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+  {{- with $app.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  {{- with $app.project }}
+  project: {{ . }}
+  {{- else }}
+  project: {{ $default.project | default "default" }}
+  {{- end }}
+  source:
+    repoURL: {{ $app.repoURL }}
+    targetRevision: {{ $app.targetRevision | default "HEAD" }}
+    {{- if $app.chart }}
+    chart: {{ $app.chart }}
+    {{- with $app.helm }}
+    helm:
+      {{- toYaml . | nindent 6 }}
+    {{- end }}
+    {{- else if $app.path }}
+    path: {{ $app.path }}
+    {{- if $app.helm }}
+    helm:
+      {{- toYaml $app.helm | nindent 6 }}
+    {{- end }}
+    {{- end }}
+  destination:
+    {{- with $app.server }}
+    server: {{ . }}
+    {{- else }}
+    server: {{ $default.server | default "https://kubernetes.default.svc" }}
+    {{- end }}
+    {{- with $app.namespace }}
+    namespace: {{ . }}
+    {{- else }}
+    namespace: {{ $default.targetNamespace | default "default" }}
+    {{- end }}
+  {{- with $app.syncPolicy | default $default.syncPolicy }}
+  syncPolicy:
+    {{- include "app-generator.syncPolicy" . | nindent 4 }}
+  {{- end }}
+  {{- with $app.ignoreDifferences }}
+  ignoreDifferences:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  {{- with $app.info }}
+  info:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+{{- end }} 
