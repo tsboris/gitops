@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: dev-t3-apps
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/tsboris/gitops.git
+        revision: HEAD
+        files:
+          - path: poc-d-gitops/env/poc-d-dev/cluster-t3.yaml
+  template:
+    metadata:
+      labels:
+        version: "{{bundelVersion}}"
+        environment: dev
+        tier: t3
+      name: "{{name}}"
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/tsboris/gitops.git
+        targetRevision: "{{targetRevision}}"
+        path: "{{appPath}}"
+        helm:
+          parameters:
+            - name: image.tag
+              value: "{{imageTag}}"
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: dev
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
