@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: stress-t3-apps
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/tsboris/gitops.git
+        revision: HEAD
+        files:
+          - path: poc-d-gitops/env/poc-d-stress/cluster-t3.yaml
+  template:
+    metadata:
+      labels:
+        version: "{{bundelVersion}}"
+        environment: stress
+        tier: t3
+      name: "{{name}}"
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/tsboris/gitops.git
+        targetRevision: HEAD
+        path: "poc-d-gitops/apps/t3/{{name}}"
+        helm:
+          parameters:
+            - name: image.tag
+              value: "{{imageTag}}"
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: stress
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true 

@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: qa-t2-apps
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/tsboris/gitops.git
+        revision: HEAD
+        files:
+          - path: poc-d-gitops/env/poc-d-qa/cluster-t2.yaml
+  template:
+    metadata:
+      labels:
+        version: "{{bundelVersion}}"
+        environment: qa
+        tier: t2
+      name: "{{name}}"
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/tsboris/gitops.git
+        targetRevision: HEAD
+        path: "poc-d-gitops/apps/t2/{{name}}"
+        helm:
+          parameters:
+            - name: image.tag
+              value: "{{imageTag}}"
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: qa
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true 
