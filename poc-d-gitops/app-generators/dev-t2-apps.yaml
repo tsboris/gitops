@@ -9,7 +9,9 @@ spec:
         repoURL: https://github.com/tsboris/gitops.git
         revision: HEAD
         files:
-          - poc-d-gitops/env/poc-d-dev/cluster-t2.yaml
+          - path: poc-d-gitops/env/poc-d-dev/cluster-t2.yaml
+            jsonPointers:
+              - /applications
   template:
     metadata:
       labels:
