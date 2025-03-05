@@ -10,25 +10,23 @@ spec:
         revision: HEAD
         files:
           - path: poc-d-gitops/env/poc-d-dev/cluster-t2.yaml
-            # jsonPointers:
-            #   - /applications
   template:
     metadata:
       labels:
-        version: "{{labels.version}}"
+        version: "{{applications.labels.version}}"
         environment: dev
         tier: t2
-      name: "{{name}}"
+      name: "{{applications.name}}"
     spec:
       project: default
       source:
         repoURL: https://github.com/tsboris/gitops.git
-        targetRevision: "{{targetRevision}}"
-        path: "{{path}}"
+        targetRevision: "{{applications.targetRevision}}"
+        path: "{{applications.path}}"
         helm:
           parameters:
             - name: image.tag
-              value: "{{imageTag}}"
+              value: "{{applications.imageTag}}"
       destination:
         server: https://kubernetes.default.svc
         namespace: dev
