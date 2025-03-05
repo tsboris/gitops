@@ -7,7 +7,7 @@
   targetRevision: HEAD
   appPath: poc-d-gitops/apps/t3/dc-app-01
   imageTag: 3.21.3
-  bundelVersion: 1.1.0
+  bundelVersion: 1.2.0
 
 - name: dc-app-02
   targetRevision: HEAD
