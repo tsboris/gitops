@@ -34,3 +34,6 @@
 
 # Utils folder
 utils/
+etp-argocd-apps/
+eudd-lis-tf/
+eudd-lis-tf-conf/

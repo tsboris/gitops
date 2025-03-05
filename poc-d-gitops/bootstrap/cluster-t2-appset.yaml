@@ -1,0 +1,52 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cluster-t2-apps
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          # Extract each application from the config file
+          # We're using a YAML anchor to set the repo and namespace once
+          - &app-defaults
+            repoURL: https://github.com/tsboris/gitops.git
+            namespace: poc-d-dev
+          # First application
+          - <<: *app-defaults
+            name: bf-app-01
+            path: gitops/poc-d-gitops/apps/t2/bf-app-01
+            targetRevision: HEAD
+            labels:
+              version: "1.0.0"
+          # Second application
+          - <<: *app-defaults
+            name: bf-app-02
+            path: gitops/poc-d-gitops/apps/t2/bf-app-02
+            targetRevision: HEAD
+            labels:
+              version: "2.0.0"
+  template:
+    metadata:
+      name: '{{name}}'
+      labels:
+        app.kubernetes.io/managed-by: argocd-applicationset
+        app.kubernetes.io/name: '{{name}}'
+        {{range $k, $v := labels}}
+        {{$k}}: '{{$v}}'
+        {{end}}
+    spec:
+      project: default
+      source:
+        repoURL: '{{repoURL}}'
+        targetRevision: '{{targetRevision}}'
+        path: '{{path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{namespace}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true 

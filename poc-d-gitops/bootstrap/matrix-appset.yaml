@@ -1,0 +1,40 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: matrix-cluster-apps
+  namespace: argocd
+spec:
+  generators:
+    # First generator: selects which environment to use
+    - matrix:
+        generators:
+          # This generator selects the environment
+          - git:
+              repoURL: https://github.com/tsboris/gitops.git
+              revision: HEAD
+              directories:
+                - path: gitops/poc-d-gitops/env/*
+          # This generator selects the cluster file from the selected environment
+          - git:
+              repoURL: https://github.com/tsboris/gitops.git
+              revision: HEAD
+              files:
+                - path: 'gitops/poc-d-gitops/env/{{path.basename}}/cluster-*.yaml'
+  template:
+    metadata:
+      name: '{{path.basename}}-{{file.path.basename}}-{{applications.name}}'
+    spec:
+      project: default
+      source:
+        repoURL: '{{applications.repoURL}}'
+        targetRevision: '{{applications.targetRevision}}'
+        path: '{{applications.path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{namespace}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true 

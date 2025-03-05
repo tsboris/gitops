@@ -74,6 +74,8 @@ Load the external application list from the specified file and merge with inline
       {{- /* Merge with existing applications */ -}}
       {{- $applications = concat $applications $newApps -}}
     {{- end -}}
+  {{- else -}}
+    {{ fail (printf "Config file %s not found" $applicationsFile) }}
   {{- end -}}
 {{- end -}}
 
