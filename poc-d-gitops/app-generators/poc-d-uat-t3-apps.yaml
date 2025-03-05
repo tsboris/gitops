@@ -14,8 +14,6 @@ spec:
     metadata:
       labels:
         version: "{{bundelVersion}}"
-        environment: uat
-        tier: t3
       name: "{{name}}"
     spec:
       project: default
@@ -29,7 +27,7 @@ spec:
               value: "{{imageTag}}"
       destination:
         server: https://kubernetes.default.svc
-        namespace: uat
+        namespace: poc-d-uat
       syncPolicy:
         automated:
           prune: true
