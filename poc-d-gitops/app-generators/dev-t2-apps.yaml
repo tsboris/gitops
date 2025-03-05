@@ -13,20 +13,20 @@ spec:
   template:
     metadata:
       labels:
-        version: "{{applications.labels.version}}"
+        version: "{{bundelVersion}}"
         environment: dev
         tier: t2
-      name: "{{applications.name}}"
+      name: "{{name}}"
     spec:
       project: default
       source:
         repoURL: https://github.com/tsboris/gitops.git
-        targetRevision: "{{applications.targetRevision}}"
-        path: "{{applications.path}}"
+        targetRevision: "{{targetRevision}}"
+        path: "{{path}}"
         helm:
           parameters:
             - name: image.tag
-              value: "{{applications.imageTag}}"
+              value: "{{imageTag}}"
       destination:
         server: https://kubernetes.default.svc
         namespace: dev
