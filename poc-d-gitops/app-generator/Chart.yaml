@@ -1,6 +1,0 @@
-apiVersion: v2
-name: app-generator
-description: Helm Chart that implements the ArgoCD Application of Applications pattern. Generates ArgoCD Applications based on a configuration file with a list of applications.
-type: application
-version: 0.1.0
-appVersion: "1.0.0" 

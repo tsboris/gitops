@@ -1,16 +1,18 @@
-namespace: poc-d-dev
-repoURL: https://github.com/tsboris/gitops.git
+# namespace: poc-d-dev
+# repoURL: https://github.com/tsboris/gitops.git
 
 applications:
 
   - name: bf-app-01
     targetRevision: HEAD
-    path: gitops/poc-d-gitops/apps/t2/bf-app-01
+    path: poc-d-gitops/apps/t2/bf-app-01
+    imageTag: 1.2.3
     labels:
       version: 1.0.0
 
   - name: bf-app-02
     targetRevision: HEAD
-    path: gitops/poc-d-gitops/apps/t2/bf-app-02
+    path: poc-d-gitops/apps/t2/bf-app-02
+    imageTag: 2.2.3
     labels:
       version: 2.0.0
