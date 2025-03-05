@@ -6,13 +6,11 @@ applications:
   - name: bf-app-01
     targetRevision: HEAD
     path: poc-d-gitops/apps/t2/bf-app-01
-    imageTag: 1.2.3
-    labels:
-      version: 1.0.0
+    imageTag: 3.19
+    bundelVersion: 1.0.0
 
   - name: bf-app-02
     targetRevision: HEAD
     path: poc-d-gitops/apps/t2/bf-app-02
-    imageTag: 2.2.3
-    labels:
-      version: 2.0.0
+    imageTag: 3.19
+    bundelVersion: 2.0.0
