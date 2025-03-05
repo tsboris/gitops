@@ -10,8 +10,8 @@ spec:
         revision: HEAD
         files:
           - path: poc-d-gitops/env/poc-d-dev/cluster-t2.yaml
-            jsonPointers:
-              - /applications
+            # jsonPointers:
+            #   - /applications
   template:
     metadata:
       labels:
