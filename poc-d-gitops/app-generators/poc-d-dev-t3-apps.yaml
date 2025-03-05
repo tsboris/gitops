@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: dev-t2-apps
+  name: dev-t3-apps
   namespace: argocd
 spec:
   generators:
@@ -9,20 +9,20 @@ spec:
         repoURL: https://github.com/tsboris/gitops.git
         revision: HEAD
         files:
-          - path: poc-d-gitops/env/poc-d-dev/cluster-t2.yaml
+          - path: poc-d-gitops/env/poc-d-dev/cluster-t3.yaml
   template:
     metadata:
       labels:
         version: "{{bundelVersion}}"
         environment: dev
-        tier: t2
+        tier: t3
       name: "{{name}}"
     spec:
       project: default
       source:
         repoURL: https://github.com/tsboris/gitops.git
-        targetRevision: "{{targetRevision}}"
-        path: "{{appPath}}"
+        targetRevision: HEAD
+        path: "poc-d-gitops/apps/t3/{{name}}"
         helm:
           parameters:
             - name: image.tag

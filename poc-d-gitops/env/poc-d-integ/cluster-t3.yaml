@@ -1,16 +1,12 @@
-namespace: poc-d-integ
-repoURL: https://github.com/tsboris/gitops.git
+# namespace: poc-d-dev
+# repoURL: https://github.com/tsboris/gitops.git
 
-applications:
+# applications:
 
-  - name: dc-app-01
-    targetRevision: HEAD
-    path: gitops/poc-d-gitops/apps/t3/dc-app-01
-    labels:
-      version: 1.0.0
-
-  - name: dc-app-02
-    targetRevision: HEAD
-    path: gitops/poc-d-gitops/apps/t3/dc-app-02
-    labels:
-      version: 2.0.0
+- name: dc-app-01
+  imageTag: 3.21.3
+  bundelVersion: 1.2.0
+  
+- name: dc-app-02
+  imageTag: 3.19
+  bundelVersion: 2.2.0
