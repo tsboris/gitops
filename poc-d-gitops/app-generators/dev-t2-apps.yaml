@@ -10,7 +10,6 @@ spec:
         revision: HEAD
         files:
           - path: poc-d-gitops/env/poc-d-dev/cluster-t2.yaml
-            useYAMLPathAlias: true
   template:
     metadata:
       labels:
@@ -23,7 +22,7 @@ spec:
       source:
         repoURL: https://github.com/tsboris/gitops.git
         targetRevision: "{{targetRevision}}"
-        path: "{{path}}"
+        path: "{{appPath}}"
         helm:
           parameters:
             - name: image.tag

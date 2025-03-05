@@ -5,12 +5,12 @@
 
 - name: bf-app-01
   targetRevision: HEAD
-  path: poc-d-gitops/apps/t2/bf-app-01
+  appPath: poc-d-gitops/apps/t2/bf-app-01
   imageTag: 3.19
   bundelVersion: 1.0.0
 
 - name: bf-app-02
   targetRevision: HEAD
-  path: poc-d-gitops/apps/t2/bf-app-02
+  appPath: poc-d-gitops/apps/t2/bf-app-02
   imageTag: 3.19
   bundelVersion: 2.0.0
