@@ -5,8 +5,8 @@
 
 - name: bf-app-01
   imageTag: 3.19
-  bundelVersion: 1.0.0
+  bundleVersion: 1.0.0
 
 - name: bf-app-02
   imageTag: 3.19
-  bundelVersion: 2.0.0
+  bundleVersion: 2.0.0

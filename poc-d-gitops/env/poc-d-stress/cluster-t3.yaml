@@ -5,8 +5,8 @@
 
 - name: dc-app-01
   imageTag: 3.21.3
-  bundelVersion: 1.2.0
+  bundleVersion: 1.2.0
   
 - name: dc-app-02
   imageTag: 3.19
-  bundelVersion: 2.2.0
+  bundleVersion: 2.2.0

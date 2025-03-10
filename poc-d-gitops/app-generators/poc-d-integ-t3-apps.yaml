@@ -13,7 +13,7 @@ spec:
   template:
     metadata:
       labels:
-        version: "{{bundelVersion}}"
+        version: "{{bundleVersion}}"
       name: "{{name}}"
     spec:
       project: default
