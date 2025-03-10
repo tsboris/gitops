@@ -13,22 +13,22 @@ spec:
   template:
     metadata:
       labels:
-        version: "{{bundleVersion}}"
-        "{{bundleVersion}}"
-      name: "{{name}}"
+        version: "{{prodBundleVersion}}"
+        "{{prodBundleVersion}}"
+      name: "{{serviceName}}"
     spec:
       project: default
       source:
-        repoURL: {{gitRepo}}
+        repoURL: {{serviceGitRepo}}
         targetRevision: HEAD
         path: "helm-chart"
         helm:
           parameters:
             - name: image.tag
-              value: "{{imageTag}}"
+              value: "{{serviceImageTag}}"
       destination:
         server: https://kubernetes.default.svc
-        namespace: "{{namespace | default 'poc-d-dev-bff'}}"
+        namespace: "{{serviceNamespace | default 'poc-d-dev-bff'}}"
       syncPolicy:
         automated:
           prune: true

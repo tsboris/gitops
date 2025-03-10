@@ -13,21 +13,21 @@ spec:
   template:
     metadata:
       labels:
-        version: "{{bundleVersion}}"
-      name: "{{name}}"
+        version: "{{prodBundleVersion}}"
+      name: "{{serviceName}}"
     spec:
       project: default
       source:
-        repoURL: https://github.com/tsboris/gitops.git
+        repoURL: {{serviceGitRepo}}
         targetRevision: HEAD
-        path: "poc-d-gitops/apps/t2/{{name}}"
+        path: "helm-chart"
         helm:
           parameters:
             - name: image.tag
-              value: "{{imageTag}}"
+              value: "{{serviceImageTag}}"
       destination:
         server: https://kubernetes.default.svc
-        namespace: "{{namespace | default 'poc-d-integ-bff'}}"
+        namespace: "{{serviceNamespace | default 'poc-d-integ-bff'}}"
       syncPolicy:
         automated:
           prune: true
