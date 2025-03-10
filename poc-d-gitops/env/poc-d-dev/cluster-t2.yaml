@@ -4,9 +4,15 @@
 # applications:
 
 - name: bf-app-01
+  gitRepo: https://github.com/tsboris/gitops.git
   imageTag: 3.19
   bundleVersion: 1.0.0
 
 - name: bf-app-02
   imageTag: 3.19
   bundleVersion: 2.0.0
+
+- name: mfe-app-01
+  imageTag: 3.19
+  bundleVersion: 3.0.0
+  namespace: poc-d-dev-fe

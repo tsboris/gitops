@@ -19,16 +19,16 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://github.com/tsboris/gitops.git
+        repoURL: {{gitRepo}}
         targetRevision: HEAD
-        path: "poc-d-gitops/apps/t2/{{name}}"
+        path: "helm-chart"
         helm:
           parameters:
             - name: image.tag
               value: "{{imageTag}}"
       destination:
         server: https://kubernetes.default.svc
-        namespace: poc-d-dev
+        namespace: "{{namespace | default 'poc-d-dev-bff'}}"
       syncPolicy:
         automated:
           prune: true

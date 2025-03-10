@@ -27,7 +27,7 @@ spec:
               value: "{{imageTag}}"
       destination:
         server: https://kubernetes.default.svc
-        namespace: poc-d-prod
+        namespace: "{{namespace | default 'poc-d-prod-bff'}}"
       syncPolicy:
         automated:
           prune: true

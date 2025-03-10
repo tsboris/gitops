@@ -27,7 +27,7 @@ spec:
               value: "{{imageTag}}"
       destination:
         server: https://kubernetes.default.svc
-        namespace: poc-d-stress
+        namespace: "{{namespace | default 'poc-d-stress-bff'}}"
       syncPolicy:
         automated:
           prune: true
