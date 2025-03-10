@@ -3,10 +3,12 @@
 
 # applications:
 
-- name: dc-app-01
-  imageTag: 3.21.3
-  bundleVersion: 1.2.0
+- serviceName: dc-app-01
+  serviceGitRepo: https://github.com/tsboris/gitops.git
+  serviceImageTag: 3.21.3
+  prodBundleVersion: 1.2.0
   
-- name: dc-app-02
-  imageTag: 3.19
-  bundleVersion: 2.2.0
+- serviceName: dc-app-02
+  serviceGitRepo: https://github.com/tsboris/gitops.git
+  serviceImageTag: 3.19
+  prodBundleVersion: 2.2.0

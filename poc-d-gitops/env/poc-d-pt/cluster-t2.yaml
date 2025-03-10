@@ -3,10 +3,12 @@
 
 # applications:
 
-- name: bf-app-01
-  imageTag: 3.19
-  bundleVersion: 1.0.0
+- serviceName: bf-app-01
+  serviceGitRepo: https://github.com/tsboris/gitops.git
+  serviceImageTag: 3.19
+  prodBundleVersion: 1.0.0
 
-- name: bf-app-02
-  imageTag: 3.19
-  bundleVersion: 2.0.0
+- serviceName: bf-app-02
+  serviceGitRepo: https://github.com/tsboris/gitops.git
+  serviceImageTag: 3.19
+  prodBundleVersion: 2.0.0
