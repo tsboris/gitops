@@ -10,6 +10,9 @@ spec:
         revision: HEAD
         files:
           - path: poc-d-gitops/env/poc-d-dev/cluster-t2.yaml
+        jqPathExpressions:
+          - path: .serviceNamespace
+            default: "poc-d-dev-bff"
   template:
     metadata:
       labels:
@@ -29,7 +32,7 @@ spec:
               value: "{{serviceImageTag}}"
       destination:
         server: https://kubernetes.default.svc
-        namespace: "{{serviceNamespace | default 'poc-d-dev-bff'}}"
+        namespace: "{{serviceNamespace}}"
       syncPolicy:
         automated:
           prune: true
