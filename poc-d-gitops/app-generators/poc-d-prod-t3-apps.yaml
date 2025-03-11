@@ -22,6 +22,8 @@ spec:
         targetRevision: HEAD
         path: "helm-chart"
         helm:
+          valueFiles:
+            - values.yaml
           parameters:
             - name: image.tag
               value: "{{serviceImageTag}}"
