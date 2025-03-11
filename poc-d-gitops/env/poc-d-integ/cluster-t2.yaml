@@ -10,11 +10,11 @@
 # applications:
 
 - serviceName: bf-app-01
-  serviceGitRepo: https://github.com/tsboris/t2-bf-apps.git
+  serviceGitRepo: https://github.com/tsboris/t2-bf-app-01.git
   serviceImageTag: 3.19
   prodBundleVersion: 1.0.0
 
 - serviceName: bf-app-02
-  serviceGitRepo: https://github.com/tsboris/t2-bf-apps.git
+  serviceGitRepo: https://github.com/tsboris/t2-bf-app-02.git
   serviceImageTag: 3.19
   prodBundleVersion: 2.0.0

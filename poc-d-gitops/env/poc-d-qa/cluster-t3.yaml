@@ -10,11 +10,11 @@
 # applications:
 
 - serviceName: dc-app-01
-  serviceGitRepo: https://github.com/tsboris/t3-dc-apps.git
+  serviceGitRepo: https://github.com/tsboris/t3-dc-app-01.git
   serviceImageTag: 3.21.3
   prodBundleVersion: 1.2.0
   
 - serviceName: dc-app-02
-  serviceGitRepo: https://github.com/tsboris/t3-dc-apps.git
+  serviceGitRepo: https://github.com/tsboris/t3-dc-app-02.git
   serviceImageTag: 3.19
   prodBundleVersion: 2.2.0
