@@ -14,12 +14,11 @@ spec:
     metadata:
       labels:
         version: "{{prodBundleVersion}}"
-        "{{prodBundleVersion}}"
       name: "{{serviceName}}"
     spec:
       project: default
       source:
-        repoURL: {{serviceGitRepo}}
+        repoURL: "{{serviceGitRepo}}"
         targetRevision: HEAD
         path: "helm-chart"
         helm:
