@@ -1,4 +1,4 @@
-# namespace: poc-d-dev
+# namespace: poc-d-dev-bff
 
 # Configuration keys:
 # - serviceName: The name of the service (required)
@@ -13,6 +13,7 @@
   serviceGitRepo: https://github.com/tsboris/t2-bf-app-01.git
   serviceImageTag: 3.19
   prodBundleVersion: 1.0.0
+  serviceNamespace: poc-d-dev-bff
 
 - serviceName: bf-app-02
   serviceGitRepo: https://github.com/tsboris/t2-bf-app-02.git
