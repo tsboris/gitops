@@ -1,5 +1,11 @@
-# namespace: poc-d-dev
-# repoURL: https://github.com/tsboris/gitops.git
+# namespace: poc-d-qa
+
+# Configuration keys:
+# - serviceName: The name of the service (required)
+# - serviceGitRepo: Git repository URL containing the service code/helm chart (required)
+# - serviceImageTag: The image tag to deploy (required)
+# - prodBundleVersion: Version of the bundle (required)
+# - serviceNamespace: Optional override for namespace. If not specified, the default namespace from the top of this file will be used.
 
 # applications:
 
