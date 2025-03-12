@@ -19,7 +19,7 @@ spec:
       project: default
       source:
         repoURL: {{serviceGitRepo}}
-        targetRevision: HEAD
+        targetRevision: "{{serviceTargetRevision}}"
         path: "helm-chart"
         helm:
           valueFiles:
@@ -29,7 +29,7 @@ spec:
               value: "{{serviceImageTag}}"
       destination:
         server: https://kubernetes.default.svc
-        namespace: "{{serviceNamespace | default 'poc-d-uat-bff'}}"
+        namespace: "{{serviceNamespace}}"
       syncPolicy:
         automated:
           prune: true
