@@ -5,7 +5,8 @@
 # - serviceGitRepo: Git repository URL containing the service code/helm chart (required)
 # - serviceImageTag: The image tag to deploy (required)
 # - prodBundleVersion: Version of the bundle (required)
-# - serviceNamespace: Optional override for namespace. If not specified, the default namespace from the top of this file will be used.
+# - serviceNamespace: The namespace where the service will be deployed (required)
+# - serviceTargetRevision: Git revision to use (branch, tag, or commit) (required)
 
 # applications:
 
@@ -13,8 +14,12 @@
   serviceGitRepo: https://github.com/tsboris/t2-bf-app-01.git
   serviceImageTag: 3.19
   prodBundleVersion: 1.0.0
+  serviceNamespace: poc-d-qa-bff
+  serviceTargetRevision: main
 
 - serviceName: bf-app-02
   serviceGitRepo: https://github.com/tsboris/t2-bf-app-02.git
   serviceImageTag: 3.19
   prodBundleVersion: 2.0.0
+  serviceNamespace: poc-d-qa-fe
+  serviceTargetRevision: main
